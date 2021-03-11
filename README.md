@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [Pula Software Quality Control Challenge]()
+## Technologies
+### Back-end
+The data is served on *Heroku* using *Hasura* (*GraphQL*) on *PostgreSQL* [here](https://farmer-data.herokuapp.com/).
+An extra API layer is built on *NextJS* that refers to the GraphQL endpoint provided by Hasura using *Apollo*.
+To start the Next server locally, go to the root of the cloned project and run `npm install`, then `npm run dev` from a terminal.
+### Front-end (Testing)
+Testing is carried out on *Postman* and the API collection is provided on the root folder of this project &mdash; **Pula Data.postman_collection.json**.
 
-## Getting Started
+## Part One
+- The database stores area data, farmer data and harvest data. 
+- The scenarios are defined in the Postman collection.
 
-First, run the development server:
+## Part Two
+- JSON payload example:
+  ```json
+    POST /api/area HTTP/1.1
+    Host: localhost:3000
+    Content-Type: application/json
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+    {
+        "average_rainfall":178,
+        "average_temperature":32,
+        "average_historical_yield":0.12648281866129452,
+        "prior_yield":0.5603589464253178,
+        "zone":"71dj37vilga"
+    }
+  ```
+- Performance tests in Postman collection. Metrics used is the response time.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Part Three
+- Clearing data is the last request in the Postman collection. The SQL query is the request body.
