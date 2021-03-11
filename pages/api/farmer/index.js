@@ -1,5 +1,5 @@
-import { ALL_AREAS } from "../../../graphql/area_queries";
-import { ADD_AREAS } from "../../../graphql/area_mutations";
+import { ALL_FARMERS } from "../../../graphql/farmer_queries";
+import { ADD_FARMERS } from "../../../graphql/farmer_mutations";
 import { dispatchQuery, dispatchMutation } from "../../../lib/apolloRequest";
 
 export default async (req, res) => {
@@ -8,7 +8,7 @@ export default async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const { data, error } = await dispatchQuery(ALL_AREAS);
+        const { data, error } = await dispatchQuery(ALL_FARMERS);
 
         if (await error) {
           throw new Error(error.message);
@@ -23,7 +23,7 @@ export default async (req, res) => {
 
     case "POST":
       try {
-        const { data, error } = await dispatchMutation(ADD_AREAS, {
+        const { data, error } = await dispatchMutation(ADD_FARMERS, {
           objects: body.objects,
         });
 
